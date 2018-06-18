@@ -10,10 +10,9 @@ import (
 	"image"
 	"image/color"
 
-	"periph.io/x/periph/conn"
+	"periph.io/x/periph/conn/display"
 	"periph.io/x/periph/conn/gpio/gpiostream"
 	"periph.io/x/periph/conn/physic"
-	"periph.io/x/periph/devices"
 )
 
 // NRZ converts a byte into the MSB-first Non-Return-to-Zero encoded 24 bits.
@@ -219,6 +218,4 @@ func put(out []byte, v byte) {
 	out[2] = byte(w)
 }
 
-var _ conn.Resource = &Dev{}
-var _ devices.Display = &Dev{}
-var _ fmt.Stringer = &Dev{}
+var _ display.Drawer = &Dev{}

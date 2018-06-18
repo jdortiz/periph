@@ -43,11 +43,11 @@ import (
 	"image/draw"
 
 	"periph.io/x/periph/conn"
+	"periph.io/x/periph/conn/display"
 	"periph.io/x/periph/conn/gpio"
 	"periph.io/x/periph/conn/i2c"
 	"periph.io/x/periph/conn/physic"
 	"periph.io/x/periph/conn/spi"
-	"periph.io/x/periph/devices"
 	"periph.io/x/periph/devices/ssd1306/image1bit"
 )
 
@@ -500,6 +500,4 @@ const (
 	i2cData = 0x40 // I²C transaction has stream of data bytes
 )
 
-var _ conn.Resource = &Dev{}
-var _ devices.Display = &Dev{}
-var _ fmt.Stringer = &Dev{}
+var _ display.Drawer = &Dev{}

@@ -2,30 +2,27 @@
 // Use of this source code is governed under the Apache License, Version 2.0
 // that can be found in the LICENSE file.
 
-package devices
+package display
 
 import (
 	"image"
 	"image/color"
-	"io"
 
 	"periph.io/x/periph/conn"
 )
 
-// Display represents a pixel output device. It is a write-only interface.
+// Drawer represents a context to display pixels on an output device. It is a
+// write-only interface.
 //
-// What Display represents can be as varied as a 1 bit OLED display or a strip
+// What Drawer represents can be as varied as a 1 bit OLED display or a strip
 // of LED lights.
-type Display interface {
+type Drawer interface {
 	conn.Resource
 
-	// Writer can be used when the native display pixel format is known. Each
-	// write must cover exactly the whole screen as a single packed stream of
-	// pixels.
-	io.Writer
 	// ColorModel returns the device native color model.
 	//
-	// It is generally color.NRGBA for a color display.
+	// It is generally color.NRGBA for a color display or a specialize type for
+	// 1-bit or 4-bit display devices.
 	ColorModel() color.Model
 	// Bounds returns the size of the output device.
 	//
